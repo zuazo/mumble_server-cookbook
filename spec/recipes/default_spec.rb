@@ -198,4 +198,64 @@ describe 'mumble_server::default' do
 
   end # context on Fedora
 
+  context 'with runit' do
+    before do
+      node_set['mumble_server']['service_type'] = 'runit_service'
+    end
+
+    it 'should not enable system service' do
+      expect(chef_run).to_not enable_service('mumble-server')
+    end
+
+    it 'should not start system service' do
+      expect(chef_run).to_not start_service('mumble-server')
+    end
+
+    # expected "service[mumble-server]" actions [] to include :stop ???
+    xit 'should stop system service' do
+      expect(chef_run).to stop_service('mumble-server')
+    end
+
+    # expected "service[mumble-server]" actions [] to include :disable ???
+    xit 'should disable system service' do
+      expect(chef_run).to disable_service('mumble-server')
+    end
+
+    it 'should install lsof, required for runit check' do
+      expect(chef_run).to install_package('lsof')
+    end
+
+    it 'should enable runit service' do
+      expect(chef_run).to enable_runit_service('mumble-server')
+    end
+
+    it 'should start runit service' do
+      expect(chef_run).to start_runit_service('mumble-server')
+    end
+
+    it 'should configure runit service correctly' do
+      expect(chef_run).to enable_runit_service('mumble-server')
+        .with_cookbook('mumble_server')
+        .with_check(true)
+        .with_run_template_name('mumble_server')
+        .with_log_template_name('mumble_server')
+        .with_check_script_template_name('mumble_server')
+        .with_restart_on_update(true)
+        .with_sv_timeout(60)
+    end
+
+    it 'configuration file should notify mumble restart' do
+      resource = chef_run.template('/etc/murmur/murmur.ini')
+      expect(resource).to notify('runit_service[mumble-server]').to(:restart)
+        .delayed
+    end
+
+    it 'pidfile link should notify mumble restart' do
+      resource = chef_run.link('/run/mumble-server/mumble-server.pid')
+      expect(resource).to notify('runit_service[mumble-server]').to(:restart)
+        .delayed
+    end
+
+  end # context with runit
+
 end

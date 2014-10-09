@@ -11,6 +11,9 @@ else
   default['mumble_server']['service_supports'] =
     Mash.new(restart: true, reload: false, status: false)
 end
+default['mumble_server']['service_type'] = 'service'
+default['mumble_server']['service_timeout'] = 60
+default['mumble_server']['service_runit_packages'] = %w(lsof)
 default['mumble_server']['config_file'] = '/etc/murmur/murmur.ini'
 default['mumble_server']['config_file_links'] = %w(/etc/mumble-server.ini)
 default['mumble_server']['pid_file'] =
@@ -20,3 +23,4 @@ default['mumble_server']['pid_file_links'] = %w(
 )
 default['mumble_server']['user'] = 'mumble-server'
 default['mumble_server']['group'] = node['mumble_server']['user']
+default['mumble_server']['verbose'] = Chef::Config[:log_level] == :debug

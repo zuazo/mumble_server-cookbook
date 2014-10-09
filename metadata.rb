@@ -12,6 +12,8 @@ supports 'debian'
 supports 'fedora'
 supports 'ubuntu'
 
+depends 'runit', '~> 1.4'
+
 recipe 'mumble_server::default', 'Installs and configures Mumble server.'
 
 provides 'mumble_server_supw'
@@ -38,6 +40,30 @@ attribute 'mumble_server/service_supports',
           type: 'hash',
           required: 'optional',
           calculated: true
+
+attribute 'mumble_server/service_type',
+          display_name: 'mumble server service type',
+          description: 'Mumble server service type.',
+          type: 'string',
+          choice: %w("service" "runit_service"),
+          required: 'optional',
+          default: '"service"'
+
+attribute 'mumble_server/service_timeout',
+          display_name: 'mumble server service timeout',
+          description:
+            'Mumble server service timeout in seconds. Only for runit.',
+          type: 'string',
+          required: 'optional',
+          default: '60'
+
+attribute 'mumble_server/service_runit_packages',
+          display_name: 'mumble server service runit packages',
+          description:
+            'Mumble server packages required for runit service.',
+          type: 'string',
+          required: 'optional',
+          default: '["lsof"]'
 
 attribute 'mumble_server/config_file',
           display_name: 'mumble server config file',
@@ -83,6 +109,15 @@ attribute 'mumble_server/group',
           type: 'string',
           required: 'optional',
           default: '"mumble-server"'
+
+attribute 'mumble_server/verbose',
+          display_name: 'mumble server verbose',
+          description:
+            'Mumble server service verbose mode. Only for runit.',
+          choice: %w(true false),
+          type: 'string',
+          required: 'optional',
+          calculated: true
 
 # attributes/config.rb
 

@@ -18,6 +18,10 @@
 # limitations under the License.
 #
 
+service_name =
+  node['mumble_server']['service_type'] +
+  "[#{node['mumble_server']['service_name']}]"
+
 # Bugfix: relocation error: proftpd: symbol SSLeay_version, version
 # OPENSSL_1.0.1 not defined in file libcrypto.so.10 with link time reference
 if platform?('fedora')
@@ -48,14 +52,14 @@ template node['mumble_server']['config_file'] do
   group node['mumble_server']['group']
   mode '00640'
   variables values: node['mumble_server']['config']
-  notifies :restart, "service[#{node['mumble_server']['service_name']}]"
+  notifies :restart, service_name
 end
 
 file node['mumble_server']['pid_file'] do
   owner 'root'
   group node['mumble_server']['group']
   mode '00660'
-  notifies :restart, "service[#{node['mumble_server']['service_name']}]"
+  notifies :restart, service_name
 end
 
 node['mumble_server']['config_file_links'].each do |config_link_to|
@@ -65,7 +69,7 @@ node['mumble_server']['config_file_links'].each do |config_link_to|
       ::File.realdirpath(config_link_to) ==
         ::File.realdirpath(node['mumble_server']['config_file'])
     end
-    notifies :restart, "service[#{node['mumble_server']['service_name']}]"
+    notifies :restart, service_name
   end
 end
 
@@ -77,11 +81,43 @@ node['mumble_server']['pid_file_links'].each do |pid_link_to|
       ::File.realdirpath(pid_link_to) ==
         ::File.realdirpath(node['mumble_server']['pid_file'])
     end
-    notifies :restart, "service[#{node['mumble_server']['service_name']}]"
+    notifies :restart, service_name
   end
 end
 
-service node['mumble_server']['service_name'] do
-  supports node['mumble_server']['service_supports']
-  action [:enable, :start]
+case node['mumble_server']['service_type']
+when 'runit_service'
+  service node['mumble_server']['service_name'] do
+    supports node['mumble_server']['service_supports']
+    action [:stop, :disable]
+  end
+
+  node['mumble_server']['service_runit_packages'].each do |pkg|
+    package pkg
+  end
+
+  include_recipe 'runit'
+
+  runit_service node['mumble_server']['service_name'] do
+    cookbook 'mumble_server'
+    check true
+    run_template_name 'mumble_server'
+    log_template_name 'mumble_server'
+    check_script_template_name 'mumble_server'
+    restart_on_update true
+    sv_timeout node['mumble_server']['service_timeout']
+    options(
+      user: node['mumble_server']['user'],
+      group: node['mumble_server']['group'],
+      config_file: node['mumble_server']['config_file'],
+      verbose: node['mumble_server']['verbose'],
+      port: node['mumble_server']['config']['port']
+    )
+    action [:enable, :start]
+  end
+else
+  service node['mumble_server']['service_name'] do
+    supports node['mumble_server']['service_supports']
+    action [:enable, :start]
+  end
 end

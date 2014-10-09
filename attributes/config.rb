@@ -63,7 +63,11 @@ default['mumble_server']['config']['ice'] = 'tcp -h 127.0.0.1 -p 6502'
 # on Unix-like systems, Murmur will force itself into foreground
 # mode which logs to the console.
 default['mumble_server']['config']['logfile'] =
-  '/var/log/mumble-server/mumble-server.log'
+  if node['mumble_server']['service_type'] == 'runit'
+    ''
+  else
+    '/var/log/mumble-server/mumble-server.log'
+  end
 
 # If set, Murmur will write its process ID to this file
 # when running in daemon mode (when the -fg flag is not

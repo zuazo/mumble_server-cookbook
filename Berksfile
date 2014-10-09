@@ -15,6 +15,9 @@ end
 metadata
 cookbook 'apt'
 
+# Until ChefSpec matchers release (#45)
+cookbook 'runit', git: 'git://github.com/hw-cookbooks/runit.git'
+
 # Minitest Chef Handler
 # More info at https://github.com/calavera/minitest-chef-handler
 if ::File.directory?(::File.join('files', 'default', 'tests', 'minitest')) ||

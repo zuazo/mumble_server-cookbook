@@ -1,0 +1,4 @@
+#!/bin/sh
+
+lsof -itcp:'<%= @options[:port] %>' -a -c'murmurd' -u'<%= @options[:user] %>'
+[ $? -ne 1 ]

@@ -1,0 +1,6 @@
+#!/bin/sh
+exec 2>&1
+exec <%= node['runit']['chpst_bin'] %> \
+  -u '<%= @options[:user] %>:<%= @options[:group] %>' \
+  murmurd -ini '<%= @options[:config_file] %>' -fg \
+  <%= @options[:verbose] ? '-v' : '' %>

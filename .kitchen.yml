@@ -31,3 +31,13 @@ suites:
 - name: default
   run_list:
   - recipe[mumble_server_test::default]
+- name: runit
+  excludes:
+  - fedora-18
+  - fedora-19
+  - fedora-20
+  run_list:
+  - recipe[mumble_server_test::default]
+  attributes:
+    mumble_server:
+      service_type: runit_service

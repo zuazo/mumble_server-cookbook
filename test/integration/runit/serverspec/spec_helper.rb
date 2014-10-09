@@ -1,9 +1,8 @@
 # encoding: UTF-8
 #
-# Cookbook Name:: mumble_server_test
-# Recipe:: default
-#
-# Copyright 2014, Onddo Labs, SL.
+# Author:: Xabier de Zuazo (<xabier@onddo.com>)
+# Copyright:: Copyright (c) 2014 Onddo Labs, SL. (www.onddo.com)
+# License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,9 +17,7 @@
 # limitations under the License.
 #
 
-node.default['mumble_server']['config']['username'] =
-  '[-=\\w\\[\\]\\{\\}\\(\\)\\@\\|\\.]+'
+require 'serverspec'
 
-include_recipe 'mumble_server'
-
-mumble_server_supw 'p4ssw0rd'
+# Set backend type
+set :backend, :exec

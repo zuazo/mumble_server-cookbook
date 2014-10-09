@@ -19,8 +19,13 @@ This cookbook has been tested on the following platforms:
 
 Please, [let us know](https://github.com/onddo/mumble_server-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
 
+## Required Cookbooks
+
+* [runit](https://supermarket.getchef.com/cookbooks/runit)
+
 ## Required Applications
 
+* Chef `>= 11`
 * Ruby `>= 1.9.3`
 
 Attributes
@@ -33,8 +38,23 @@ Attributes
     <th>Default</th>
   </tr>
   <tr>
+    <td><code>node['mumble_server']['service_type']</code></td>
+    <td>Mumble server service type. Possible values are: <code>'service'</code>, <code>'runit_service'</code>.</td>
+    <td><code>'system'</code></td>
+  </tr>
+  <tr>
+    <td><code>node['mumble_server']['service_timeout']</code></td>
+    <td>Mumble server service timeout in seconds. Only for runit.</td>
+    <td><code>60</code></td>
+  </tr>
+  <tr>
     <td><code>node['mumble_server']['config']</code></td>
     <td>Mumble server configuration Hash. <strong>There is no need to escape values.</strong> See the <a href="#server-configuration-example">example below</a>.</td>
+    <td><em>calculated</em></td>
+  </tr>
+  <tr>
+    <td><code>node['mumble_server']['verbose']</code></td>
+    <td>Mumble server verbose mode. Only for runit.</td>
     <td><em>calculated</em></td>
   </tr>
 </table>
@@ -53,6 +73,11 @@ Some cookbook attributes are used internally to support the different platforms.
     <td><code>node['mumble_server']['packages']</code></td>
     <td>Mumble server required packages as Array.</td>
     <td><code>['mumble-server']</code></td>
+  </tr>
+  <tr>
+    <td><code>node['mumble_server']['service_runit_packages']</code></td>
+    <td>Mumble server required packages for runit.</td>
+    <td><code>['lsof']</code></td>
   </tr>
   <tr>
     <td><code>node['mumble_server']['service_name']</code></td>
