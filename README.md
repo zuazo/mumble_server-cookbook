@@ -41,7 +41,7 @@ Attributes
   <tr>
     <td><code>node['mumble_server']['service_type']</code></td>
     <td>Mumble server service type. Possible values are: <code>'service'</code>, <code>'runit_service'</code>.</td>
-    <td><code>'system'</code></td>
+    <td><code>'service'</code></td>
   </tr>
   <tr>
     <td><code>node['mumble_server']['service_timeout']</code></td>
