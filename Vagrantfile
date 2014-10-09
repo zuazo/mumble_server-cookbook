@@ -89,7 +89,7 @@ Vagrant.configure('2') do |config|
 
     chef.run_list = %w(
       recipe[apt]
-      recipe[mumble_server_test]
+      recipe[mumble_server]
     )
   end
 end
