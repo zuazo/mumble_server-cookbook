@@ -48,14 +48,14 @@ template node['mumble_server']['config_file'] do
   group node['mumble_server']['group']
   mode '00640'
   variables values: node['mumble_server']['config']
-  notifies :restart, "service[#{node['mumble_server']['service']}]"
+  notifies :restart, "service[#{node['mumble_server']['service_name']}]"
 end
 
 file node['mumble_server']['pid_file'] do
   owner 'root'
   group node['mumble_server']['group']
   mode '00660'
-  notifies :restart, "service[#{node['mumble_server']['service']}]"
+  notifies :restart, "service[#{node['mumble_server']['service_name']}]"
 end
 
 config_link_to = '/etc/mumble-server.ini'
@@ -65,7 +65,7 @@ link config_link_to do
     ::File.realdirpath(config_link_to) ==
       ::File.realdirpath(node['mumble_server']['config_file'])
   end
-  notifies :restart, "service[#{node['mumble_server']['service']}]"
+  notifies :restart, "service[#{node['mumble_server']['service_name']}]"
 end
 
 pid_link_to = '/run/mumble-server/mumble-server.pid'
@@ -76,10 +76,10 @@ link pid_link_to do
     ::File.realdirpath(pid_link_to) ==
       ::File.realdirpath(node['mumble_server']['pid_file'])
   end
-  notifies :restart, "service[#{node['mumble_server']['service']}]"
+  notifies :restart, "service[#{node['mumble_server']['service_name']}]"
 end
 
-service node['mumble_server']['service'] do
+service node['mumble_server']['service_name'] do
   supports node['mumble_server']['service_supports']
   action [:enable, :start]
 end

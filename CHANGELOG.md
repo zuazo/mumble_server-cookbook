@@ -1,13 +1,3 @@
-mumble_server CHANGELOG
-=======================
+# CHANGELOG for mumble_server
 
-This file is used to list changes made in each version of the mumble_server cookbook.
-
-0.1.0
------
-- [your_name] - Initial release of mumble_server
-
-- - -
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
-
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
+This file is used to list changes made in each version of `mumble_server`.
