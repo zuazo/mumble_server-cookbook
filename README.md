@@ -93,6 +93,32 @@ Recipes
 
 Installs and configures Mumble server.
 
+Resources
+=========
+
+## mumble_server_supw[password]
+
+Changes Mumur SuperUser password.
+
+### mumble_server_supw[password] Actions
+
+* `change` (default)
+
+### mumble_server_supw[password] Parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td>password</td>
+    <td>SuperUser password.</td>
+    <td><em>name</em></td>
+  </tr>
+</table>
+
 Usage Example
 =============
 
@@ -126,6 +152,14 @@ Another alternative is to include the default recipe in your *Run List*.
     "recipe[mumble_server]"
   ]
 }
+```
+
+## Setting SuperUser Password
+
+```ruby
+include_recipe 'mumble_server'
+
+mumble_server_supw 'p4ssw0rd'
 ```
 
 ## Server Configuration Example

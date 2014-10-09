@@ -14,6 +14,8 @@ supports 'ubuntu'
 
 recipe 'mumble_server::default', 'Installs and configures Mumble server.'
 
+provides 'mumble_server_supw'
+
 # attributes/default.rb
 
 attribute 'mumble_server/packages',
