@@ -18,6 +18,9 @@
 # limitations under the License.
 #
 
+node.default['mumble_server']['config']['username'] =
+  '[-=\\w\\[\\]\\{\\}\\(\\)\\@\\|\\.]+'
+
 include_recipe 'mumble_server'
 
 mumble_server_supw 'p4ssw0rd'
