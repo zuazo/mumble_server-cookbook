@@ -339,7 +339,7 @@ node.default['mumble_server']['config']['users'] = 100
 
 # If Murmur is started as root, which user should it switch to?
 # This option is ignored if Murmur isn't started with root privileges.
-node.default['mumble_server']['config']['uname'] = 'mumble-server'
+node.default['mumble_server']['config']['uname'] = node['mumble_server']['user']
 
 # If this options is enabled, only clients which have a certificate are allowed
 # to connect.
