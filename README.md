@@ -195,7 +195,8 @@ Another alternative is to include the default recipe in your *Run List*.
 ```ruby
 include_recipe 'mumble_server'
 
-mumble_server_supw 'p4ssw0rd'
+# Set SuperUser password
+mumble_server_supw 'PUzcoHohsDiFECHyX0PP'
 ```
 
 ## Server Configuration Example
