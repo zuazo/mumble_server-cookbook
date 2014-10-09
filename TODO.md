@@ -1,7 +1,6 @@
 TODO
 ====
 
-* [ ] Add attributes for file links.
 * [ ] /etc/default configuration templates.
 
 * [ ] Use runit.

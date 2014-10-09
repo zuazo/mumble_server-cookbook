@@ -58,25 +58,27 @@ file node['mumble_server']['pid_file'] do
   notifies :restart, "service[#{node['mumble_server']['service_name']}]"
 end
 
-config_link_to = '/etc/mumble-server.ini'
-link config_link_to do
-  to node['mumble_server']['config_file']
-  not_if do
-    ::File.realdirpath(config_link_to) ==
-      ::File.realdirpath(node['mumble_server']['config_file'])
+node['mumble_server']['config_file_links'].each do |config_link_to|
+  link config_link_to do
+    to node['mumble_server']['config_file']
+    not_if do
+      ::File.realdirpath(config_link_to) ==
+        ::File.realdirpath(node['mumble_server']['config_file'])
+    end
+    notifies :restart, "service[#{node['mumble_server']['service_name']}]"
   end
-  notifies :restart, "service[#{node['mumble_server']['service_name']}]"
 end
 
-pid_link_to = '/run/mumble-server/mumble-server.pid'
-link pid_link_to do
-  to node['mumble_server']['pid_file']
-  only_if { ::File.exist?(::File.dirname(pid_link_to)) }
-  not_if do
-    ::File.realdirpath(pid_link_to) ==
-      ::File.realdirpath(node['mumble_server']['pid_file'])
+node['mumble_server']['pid_file_links'].each do |pid_link_to|
+  link pid_link_to do
+    to node['mumble_server']['pid_file']
+    only_if { ::File.exist?(::File.dirname(pid_link_to)) }
+    not_if do
+      ::File.realdirpath(pid_link_to) ==
+        ::File.realdirpath(node['mumble_server']['pid_file'])
+    end
+    notifies :restart, "service[#{node['mumble_server']['service_name']}]"
   end
-  notifies :restart, "service[#{node['mumble_server']['service_name']}]"
 end
 
 service node['mumble_server']['service_name'] do

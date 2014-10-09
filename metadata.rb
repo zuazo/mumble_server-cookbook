@@ -46,12 +46,29 @@ attribute 'mumble_server/config_file',
           required: 'optional',
           default: '"/etc/murmur/murmur.ini"'
 
+attribute 'mumble_server/config_file_links',
+          display_name: 'mumble server config file links',
+          description:
+            'Mumble server file links to create pointing to the configuration '\
+            'file.',
+          type: 'array',
+          required: 'optional',
+          default: '["/etc/mumble-server.ini"]'
+
 attribute 'mumble_server/pid_file',
           display_name: 'mumble server pid file',
           description: 'Mumble server pidfile path.',
           type: 'string',
           required: 'optional',
           default: '"/var/run/mumble-server/mumble-server.pid"'
+
+attribute 'mumble_server/pid_file_links',
+          display_name: 'mumble server pid file links',
+          description:
+            'Mumble server file links to create pointing to the pidfile.',
+          type: 'array',
+          required: 'optional',
+          default: '["/run/mumble-server/mumble-server.pid"]'
 
 attribute 'mumble_server/user',
           display_name: 'mumble server user',

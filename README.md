@@ -70,9 +70,19 @@ Some cookbook attributes are used internally to support the different platforms.
     <td><code>'/etc/murmur/murmur.ini'</code></td>
   </tr>
   <tr>
+    <td><code>node['mumble_server']['config_file_links']</code></td>
+    <td>Mumble server file links to create pointing to the configuration file.</td>
+    <td><code>['/etc/mumble-server.ini']</code></td>
+  </tr>
+  <tr>
     <td><code>node['mumble_server']['pid_file']</code></td>
     <td>Mumble server pidfile path.</td>
     <td><code>'/var/run/mumble-server/mumble-server.pid'</code></td>
+  </tr>
+  <tr>
+    <td><code>node['mumble_server']['pid_file_links']</code></td>
+    <td>Mumble server file links to create pointing to the pidfile.</td>
+    <td><code>['/run/mumble-server/mumble-server.pid']</code></td>
   </tr>
   <tr>
     <td><code>node['mumble_server']['user']</code></td>

@@ -12,7 +12,11 @@ else
     Mash.new(restart: true, reload: false, status: false)
 end
 default['mumble_server']['config_file'] = '/etc/murmur/murmur.ini'
+default['mumble_server']['config_file_links'] = %w(/etc/mumble-server.ini)
 default['mumble_server']['pid_file'] =
   '/var/run/mumble-server/mumble-server.pid'
+default['mumble_server']['pid_file_links'] = %w(
+  /run/mumble-server/mumble-server.pid
+)
 default['mumble_server']['user'] = 'mumble-server'
 default['mumble_server']['group'] = node['mumble_server']['user']
