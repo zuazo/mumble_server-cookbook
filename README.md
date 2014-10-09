@@ -52,7 +52,7 @@ Some cookbook attributes are used internally to support the different platforms.
   <tr>
     <td><code>node['mumble_server']['packages']</code></td>
     <td>Mumble server required packages as Array.</td>
-    <td><code>["mumble-server"]</code></td>
+    <td><code>['mumble-server']</code></td>
   </tr>
   <tr>
     <td><code>node['mumble_server']['service_name']</code></td>
@@ -213,9 +213,8 @@ node.default['mumble_server']['config']['ice'] = 'tcp -h 127.0.0.1 -p 6502'
 #
 # Note that if this is uncommented and with empty content,
 # access will be denied.
-
 # node.default['mumble_server']['config']['icesecretread'] = nil
-node.default['mumble_server']['config']['icesecretwrite'] = nil
+# node.default['mumble_server']['config']['icesecretwrite'] = nil
 
 # How many login attempts do we tolerate from one IP
 # inside a given timeframe before we ban the connection?

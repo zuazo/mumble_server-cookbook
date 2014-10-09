@@ -46,9 +46,8 @@ default['mumble_server']['config']['ice'] = 'tcp -h 127.0.0.1 -p 6502'
 #
 # Note that if this is uncommented and with empty content,
 # access will be denied.
-
 # default['mumble_server']['config']['icesecretread'] = nil
-default['mumble_server']['config']['icesecretwrite'] = nil
+# default['mumble_server']['config']['icesecretwrite'] = nil
 
 # How many login attempts do we tolerate from one IP
 # inside a given timeframe before we ban the connection?
