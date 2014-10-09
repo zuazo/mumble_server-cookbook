@@ -21,7 +21,7 @@ default['mumble_server']['config']['database'] =
 # Murmur defaults to not using D-Bus. If you wish to use dbus, which is one of
 # the RPC methods available in Murmur, please specify so here.
 #
-default['mumble_server']['config']['dbus'] = 'system'
+# default['mumble_server']['config']['dbus'] = 'system'
 
 # Alternate D-Bus service name. Only use if you are running distinct
 # murmurd processes connected to the same D-Bus daemon.
