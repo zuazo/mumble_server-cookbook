@@ -24,3 +24,5 @@ node.default['mumble_server']['config']['username'] =
 include_recipe 'mumble_server'
 
 mumble_server_supw 'p4ssw0rd'
+
+package 'lsof' # required for integration tests
