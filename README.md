@@ -201,6 +201,8 @@ mumble_server_supw 'PUzcoHohsDiFECHyX0PP'
 
 ## Server Configuration Example
 
+**Note:** See the [Murmur guide](http://wiki.mumble.info/wiki/Murmurguide) and the [murmur.ini documentation](http://wiki.mumble.info/wiki/Murmur.ini) for more information.
+
 This is the default configuration:
 
 ```ruby
