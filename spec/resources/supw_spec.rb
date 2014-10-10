@@ -22,6 +22,7 @@ require 'spec_helper'
 describe 'mumble_server_supw resource' do
   let(:chef_runner) { ChefSpec::Runner.new(step_into: %w(mumble_server_supw)) }
   let(:chef_run) { chef_runner.converge('mumble_server_test') }
+  let(:murmurd_cmd) { "murmurd -ini '/etc/murmur/murmur.ini'" }
   before do
     orig_file_exist = ::File.method(:exist?)
     allow(::File).to receive(:exist?) { |*args| orig_file_exist.call(*args) }
@@ -46,9 +47,13 @@ describe 'mumble_server_supw resource' do
     ).and_return(true)
   end
 
-  it 'should run murmurd -supw command' do
-    murmurd = "murmurd -ini '/etc/murmur/murmur.ini'"
-    expect(chef_run).to run_execute("#{murmurd} -supw 'p4ssw0rd'")
+  it 'should run murmurd -supw command with password hidden' do
+    expect(chef_run).to run_execute("#{murmurd_cmd} -supw '****'")
+  end
+
+  it 'should run the murmurd -supw command with the password' do
+    expect(chef_run).to run_execute("#{murmurd_cmd} -supw '****'")
+      .with_command("#{murmurd_cmd} -supw 'p4ssw0rd'")
   end
 
 end # describe mumble_server_supw resource
