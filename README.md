@@ -155,8 +155,8 @@ Changes Mumur SuperUser password.
   </tr>
 </table>
 
-Usage Example
-=============
+Usage Examples
+==============
 
 ## Including in a Cookbook Recipe
 
