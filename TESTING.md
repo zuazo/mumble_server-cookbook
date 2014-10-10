@@ -97,3 +97,13 @@ To run Chef again on the same machine:
 To destroy the machine:
 
     $ vagrant destroy
+
+## ChefSpec Matchers
+
+### change_mumble_server_supw(password)
+
+Assert that the *Chef Run* changes the Mumble Server SuperUser password.
+
+```ruby
+expect(chef_run).to change_mumble_server_supw(password)
+```
