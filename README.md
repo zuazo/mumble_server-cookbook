@@ -239,7 +239,7 @@ node.default['mumble_server']['config']['database'] =
 # with ICE, you should only use it if you trust all the users who have
 # shell access to your machine.
 # Please see the ICE documentation on how to specify endpoints.
-node.default['mumble_server']['config']['ice'] = 'tcp -h 127.0.0.1 -p 6502'
+# node.default['mumble_server']['config']['ice'] = 'tcp -h 127.0.0.1 -p 6502'
 
 # Ice primarily uses local sockets. This means anyone who has a
 # user account on your machine can connect to the Ice services.

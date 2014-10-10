@@ -23,6 +23,9 @@ platforms:
 - name: debian-7.6
   run_list:
   - recipe[apt]
+- name: centos-5.10
+- name: centos-6.5
+- name: centos-7.0
 - name: fedora-18
 - name: fedora-19
 - name: fedora-20
