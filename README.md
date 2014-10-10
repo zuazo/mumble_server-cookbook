@@ -389,19 +389,19 @@ include_recipe 'mumble_server'
 Testing
 =======
 
-See [TESTING.md](TESTING.md).
+See [TESTING.md](https://github.com/onddo/mumble_server-cookbook/blob/master/TESTING.md).
 
 Contributing
 ============
 
 Please do not hesitate to [open an issue](https://github.com/onddo/mumble_server-cookbook/issues/new) with any questions or problems.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/onddo/mumble_server-cookbook/blob/master/CONTRIBUTING.md).
 
 TODO
 ====
 
-See [TODO.md](TODO.md).
+See [TODO.md](https://github.com/onddo/mumble_server-cookbook/blob/master/TODO.md).
 
 
 License and Author
