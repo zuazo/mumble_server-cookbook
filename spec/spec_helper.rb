@@ -22,6 +22,8 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'libraries'))
 require 'chefspec'
 require 'chefspec/berkshelf'
 
+require 'support/coverage'
+
 RSpec.configure do |config|
   # Prohibit using the should syntax
   config.expect_with :rspec do |spec|
@@ -43,4 +45,4 @@ RSpec.configure do |config|
   config.version = '12.04'
 end
 
-# at_exit { ChefSpec::Coverage.report! } # still in beta
+at_exit { ChefSpec::Coverage.report! }

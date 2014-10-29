@@ -4,6 +4,7 @@ Description
 [![Dependency Status](http://img.shields.io/gemnasium/onddo/mumble_server-cookbook.svg?style=flat)](https://gemnasium.com/onddo/mumble_server-cookbook)
 [![Code Climate](http://img.shields.io/codeclimate/github/onddo/mumble_server-cookbook.svg?style=flat)](https://codeclimate.com/github/onddo/mumble_server-cookbook)
 [![Build Status](http://img.shields.io/travis/onddo/mumble_server-cookbook.svg?style=flat)](https://travis-ci.org/onddo/mumble_server-cookbook)
+[![Coverage Status](http://img.shields.io/coveralls/onddo/mumble_server-cookbook.svg?style=flat)](https://coveralls.io/r/onddo/mumble_server-cookbook?branch=master)
 
 Installs and configures a [Mumble](http://wiki.mumble.info/wiki/Main_Page) server (called Murmur).
 
