@@ -24,12 +24,7 @@ describe 'mumble_server_supw resource' do
   let(:chef_run) { chef_runner.converge('mumble_server_test') }
   let(:murmurd_cmd) { "murmurd -ini '/etc/murmur/murmur.ini'" }
   before do
-    orig_file_exist = ::File.method(:exist?)
-    allow(::File).to receive(:exist?) { |*args| orig_file_exist.call(*args) }
-    # orig_file_realdirpath = ::File.method(:realdirpath)
-    # allow(::File).to receive(:realdirpath) do
-    #   |*args| orig_file_realdirpath.call(*args)
-    # end
+    allow(::File).to receive(:exist?).and_call_original
 
     %w(
       /etc/murmur/murmur.ini
