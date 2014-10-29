@@ -26,12 +26,8 @@ describe 'mumble_server::default' do
   let(:node_set) { chef_runner.node.set }
   let(:node_automatic) { chef_runner.node.automatic }
   before do
-    orig_file_exist = ::File.method(:exist?)
-    allow(::File).to receive(:exist?) { |*args| orig_file_exist.call(*args) }
-    orig_file_realdirpath = ::File.method(:realdirpath)
-    allow(::File).to receive(:realdirpath) do
-      |*args| orig_file_realdirpath.call(*args)
-    end
+    allow(::File).to receive(:exist?).and_call_original
+    allow(::File).to receive(:realdirpath).and_call_original
 
     %w(
       /etc/murmur/murmur.ini
@@ -41,8 +37,8 @@ describe 'mumble_server::default' do
     ).each do |path|
       allow(::File).to receive(:realdirpath).with(path).and_return(path)
     end
-    allow(::File).to receive(:exist?)
-      .with('/run/mumble-server').and_return(true)
+    allow(::File).to receive(:exist?).with('/run/mumble-server')
+      .and_return(true)
     stub_command(
       "file /usr/lib*/libcrypto.so.[0-9]* | awk '$2 == \"ELF\" {print $1}' "\
       "| cut -d: -f1 | xargs readelf -s | grep -Fwq 'OPENSSL_'"
