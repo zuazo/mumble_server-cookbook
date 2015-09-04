@@ -33,95 +33,29 @@ Please, [let us know](https://github.com/zuazo/mumble_server-cookbook/issues/new
 Attributes
 ==========
 
-<table>
-  <tr>
-    <th>Attribute</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['service_type']</code></td>
-    <td>Mumble server service type. Possible values are: <code>'service'</code>, <code>'runit_service'</code>.</td>
-    <td><code>'service'</code></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['service_timeout']</code></td>
-    <td>Mumble server service timeout in seconds. Only for runit.</td>
-    <td><code>60</code></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['config']</code></td>
-    <td>Mumble server configuration Hash. <strong>There is no need to escape values.</strong> See the <a href="#server-configuration-example">example below</a>.</td>
-    <td><em>calculated</em></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['verbose']</code></td>
-    <td>Mumble server verbose mode. Only for runit.</td>
-    <td><em>calculated</em></td>
-  </tr>
-</table>
+| Attribute                                  | Default      | Description                    |
+|:-------------------------------------------|:-------------|:-------------------------------|
+| `node['mumble_server']['service_type']`    | `'service'`  | Mumble server service type. Possible values are: `'service'`, `'runit_service'`.
+| `node['mumble_server']['service_timeout']` | `60`         | Mumble server service timeout in seconds. Only for runit.
+| `node['mumble_server']['config']`          | *calculated* | Mumble server configuration Hash. **There is no need to escape values.** See the [example below](#server-configuration-example).
+| `node['mumble_server']['verbose']`         | *calculated* | Mumble server verbose mode. Only for runit.
 
 ## Platform Support Related Attributes
 
 Some cookbook attributes are used internally to support the different platforms. Surely you want to change them if you want to support new platforms or want to improve the support of some platforms already supported.
 
-<table>
-  <tr>
-    <th>Attribute</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['packages']</code></td>
-    <td>Mumble server required packages as Array.</td>
-    <td><code>['mumble-server']</code></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['service_runit_packages']</code></td>
-    <td>Mumble server required packages for runit.</td>
-    <td><code>['lsof']</code></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['service_name']</code></td>
-    <td>Mumble server service name.</td>
-    <td><em>calculated</em></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['service_supports']</code></td>
-    <td>Mumble server service supported actions Hash.</td>
-    <td><em>calculated</em></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['config_file']</code></td>
-    <td>Mumble server configuration file path.</td>
-    <td><code>'/etc/murmur/murmur.ini'</code></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['config_file_links']</code></td>
-    <td>Mumble server file links to create pointing to the configuration file.</td>
-    <td><code>['/etc/mumble-server.ini']</code></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['pid_file']</code></td>
-    <td>Mumble server pidfile path.</td>
-    <td><code>'/var/run/mumble-server/mumble-server.pid'</code></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['pid_file_links']</code></td>
-    <td>Mumble server file links to create pointing to the pidfile.</td>
-    <td><code>['/run/mumble-server/mumble-server.pid']</code></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['user']</code></td>
-    <td>Mumble server system use.</td>
-    <td><code>'mumble-server'</code></td>
-  </tr>
-  <tr>
-    <td><code>node['mumble_server']['group']</code></td>
-    <td>Mumble server system group.</td>
-    <td><code>'mumble-server'</code></td>
-  </tr>
-</table>
+| Attribute                                         | Default                      | Description                    |
+|:--------------------------------------------------|:-----------------------------|:-------------------------------|
+| `node['mumble_server']['packages']`               | `['mumble-server']`          | Mumble server required packages as Array.
+| `node['mumble_server']['service_runit_packages']` | `['lsof']`                   | Mumble server required packages for runit.
+| `node['mumble_server']['service_name']`           | *calculated*                 | Mumble server service name.
+| `node['mumble_server']['service_supports']`       | *calculated*                 | Mumble server service supported actions Hash.
+| `node['mumble_server']['config_file']`            | `'/etc/murmur/murmur.ini'`   | Mumble server configuration file path.
+| `node['mumble_server']['config_file_links']`      | `['/etc/mumble-server.ini']` | Mumble server file links to create pointing to the configuration file.
+| `node['mumble_server']['pid_file']`               | *calculated*                 | Mumble server pidfile path.
+| `node['mumble_server']['pid_file_links']`         | *calculated*                 | Mumble server file links to create pointing to the pidfile.
+| `node['mumble_server']['user']`                   | `'mumble-server'`            | Mumble server system use.
+| `node['mumble_server']['group']`                  | `'mumble-server'`            | Mumble server system group.
 
 Recipes
 =======
@@ -143,18 +77,9 @@ Changes Mumur SuperUser password.
 
 ### mumble_server_supw[password] Parameters
 
-<table>
-  <tr>
-    <th>Parameter</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td>password</td>
-    <td>SuperUser password.</td>
-    <td><em>name</em></td>
-  </tr>
-</table>
+| Parameter | Default | Description         |
+|:----------|:--------|:--------------------|
+| password  | *name*  | SuperUser password.
 
 Usage Examples
 ==============
