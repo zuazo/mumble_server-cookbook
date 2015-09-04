@@ -20,7 +20,9 @@
 require_relative '../spec_helper'
 
 describe 'mumble_server_supw resource' do
-  let(:chef_runner) { ChefSpec::Runner.new(step_into: %w(mumble_server_supw)) }
+  let(:chef_runner) do
+    ChefSpec::SoloRunner.new(step_into: %w(mumble_server_supw))
+  end
   let(:chef_run) { chef_runner.converge('mumble_server_test') }
   let(:murmurd_cmd) { "murmurd -ini '/etc/murmur/murmur.ini'" }
   before do

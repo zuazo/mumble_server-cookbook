@@ -20,7 +20,7 @@
 require_relative '../spec_helper'
 
 describe 'mumble_server::default' do
-  let(:chef_runner) { ChefSpec::Runner.new }
+  let(:chef_runner) { ChefSpec::SoloRunner.new }
   let(:chef_run) { chef_runner.converge(described_recipe) }
   let(:node) { chef_runner.node }
   let(:node_set) { chef_runner.node.set }
@@ -141,14 +141,14 @@ describe 'mumble_server::default' do
   end
 
   {
-    'mumble-server' => %w(debian ubuntu),
-    'murmur' => %w(centos redhat fedora amazon scientific)
+    'mumble-server' => %w(debian@7.0 ubuntu@12.04),
+    'murmur' => %w(centos@5.10 redhat@5.10 fedora@20 amazon@2014.03)
   }.each do |service_name, platforms|
-    platforms.each do |platform|
+    platforms.each do |platform_info|
+      platform, version = platform_info.split('@', 2)
       context "on #{platform.capitalize}" do
-        before do
-          node_automatic['platform'] = platform
-          node_automatic['platform_version'] = '7.0'
+        let(:chef_runner) do
+          ChefSpec::SoloRunner.new(platform: platform, version: version)
         end
 
         it "should enable #{service_name} service" do
@@ -170,9 +170,8 @@ describe 'mumble_server::default' do
   end # service, platforms each
 
   context 'on Fedora (OpenSSL upgrade)' do
-    before do
-      node_automatic['platform'] = 'fedora'
-      node_automatic['platform_version'] = '19.0'
+    let(:chef_runner) do
+      ChefSpec::SoloRunner.new(platform: 'fedora', version: '20')
     end
 
     it 'should upgrade old OpenSSL versions' do
