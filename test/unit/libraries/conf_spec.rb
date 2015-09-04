@@ -23,7 +23,7 @@ require 'conf'
 describe MumbleServer::Conf do
   context '#key' do
     [false, nil, 5, 'String'].each do |k|
-      it "should return string value for #{k.inspect}" do
+      it "returns string value for #{k.inspect}" do
         expect(MumbleServer::Conf.key(k)).to be_a(String)
       end
     end
@@ -36,7 +36,7 @@ describe MumbleServer::Conf do
       '"""' => '"\""',
       '\\w*' => '\\\\w*'
     }.each do |orig, new|
-      it "should return #{new.inspect} for #{orig.inspect}" do
+      it "returns #{new.inspect} for #{orig.inspect}" do
         expect(MumbleServer::Conf.value(orig)).to eq(new)
       end
     end
@@ -50,14 +50,14 @@ describe MumbleServer::Conf do
         .and_return('value1')
     end
 
-    it 'should return key=value' do
+    it 'returns key=value' do
       expect(MumbleServer::Conf.key_value('key', 'value'))
         .to eq('key1=value1')
     end
   end
 
   context '#sort' do
-    it 'should run successfully without "Ice" section' do
+    it 'runs successfully without "Ice" section' do
       values = {
         'Fire' => 'value1',
         'Wind' => 'value2'
@@ -66,7 +66,7 @@ describe MumbleServer::Conf do
         .to eq(values)
     end
 
-    it 'should put "Ice" section at the end' do
+    it 'puts "Ice" section at the end' do
       values = {
         'Fire' => 'value1',
         'Ice' => 'value2',

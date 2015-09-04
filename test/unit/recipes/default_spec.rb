@@ -45,15 +45,15 @@ describe 'mumble_server::default' do
     ).and_return(true)
   end
 
-  it 'should not upgrade new OpenSSL versions' do
+  it 'does not upgrade new OpenSSL versions' do
     expect(chef_run).to_not upgrade_package('openssl')
   end
 
-  it 'should install mumble-server' do
+  it 'installs mumble-server' do
     expect(chef_run).to install_package('mumble-server')
   end
 
-  it 'should create configuration file directory' do
+  it 'creates configuration file directory' do
     allow(::File).to receive(:exist?).with('/etc/murmur').and_return(false)
     expect(chef_run).to create_directory('/etc/murmur')
       .with_recursive(true)
@@ -62,12 +62,12 @@ describe 'mumble_server::default' do
       .with_mode('00755')
   end
 
-  it 'should not create configuration file directory if already exists' do
+  it 'does not create configuration file directory if already exists' do
     allow(::File).to receive(:exist?).with('/etc/murmur').and_return(true)
     expect(chef_run).to_not create_directory('/etc/murmur')
   end
 
-  it 'should create configuration file' do
+  it 'creates configuration file' do
     expect(chef_run).to create_template('/etc/murmur/murmur.ini')
       .with_source('config.ini.erb')
       .with_owner('root')
@@ -75,30 +75,30 @@ describe 'mumble_server::default' do
       .with_mode('00640')
   end
 
-  it 'configuration file should notify mumble restart' do
+  it 'configuration file notifies mumble restart' do
     resource = chef_run.template('/etc/murmur/murmur.ini')
     expect(resource).to notify('service[mumble-server]').to(:restart).delayed
   end
 
-  it 'should create configuration file link in /etc/mumble-server.ini' do
+  it 'creates configuration file link in /etc/mumble-server.ini' do
     allow(::File).to receive(:realdirpath).with('/etc/mumble-server.ini')
       .and_return('/etc/mumble-server.ini')
     expect(chef_run).to create_link('/etc/mumble-server.ini')
       .with_to('/etc/murmur/murmur.ini')
   end
 
-  it 'should not create configuration file link in the path is the same' do
+  it 'does not create configuration file link in the path is the same' do
     allow(::File).to receive(:realdirpath).with('/etc/mumble-server.ini')
       .and_return('/etc/murmur/murmur.ini')
     expect(chef_run).to_not create_link('/etc/mumble-server.ini')
   end
 
-  it 'configuration file should notify mumble restart' do
+  it 'configuration file notifies mumble restart' do
     resource = chef_run.link('/etc/mumble-server.ini')
     expect(resource).to notify('service[mumble-server]').to(:restart).delayed
   end
 
-  it 'should create pidfile link to /run' do
+  it 'creates pidfile link to /run' do
     allow(::File).to receive(:exist?)
       .with('/run/mumble-server').and_return(true)
     allow(::File).to receive(:realdirpath)
@@ -111,7 +111,7 @@ describe 'mumble_server::default' do
       .with_to('/var/run/mumble-server/mumble-server.pid')
   end
 
-  it 'should not create pidfile link if there is no /run' do
+  it 'does not create pidfile link if there is no /run' do
     allow(::File).to receive(:exist?)
       .with('/run/mumble-server').and_return(false)
     allow(::File).to receive(:realdirpath)
@@ -123,7 +123,7 @@ describe 'mumble_server::default' do
     expect(chef_run).to_not create_link('/run/mumble-server/mumble-server.pid')
   end
 
-  it 'should not create pidfile link if the path is the same' do
+  it 'does not create pidfile link if the path is the same' do
     allow(::File).to receive(:exist?)
       .with('/run/mumble-server').and_return(true)
     allow(::File).to receive(:realdirpath)
@@ -135,7 +135,7 @@ describe 'mumble_server::default' do
     expect(chef_run).to_not create_link('/run/mumble-server/mumble-server.pid')
   end
 
-  it 'pidfile link should notify mumble restart' do
+  it 'pidfile link notifies mumble restart' do
     resource = chef_run.link('/run/mumble-server/mumble-server.pid')
     expect(resource).to notify('service[mumble-server]').to(:restart).delayed
   end
@@ -151,18 +151,18 @@ describe 'mumble_server::default' do
           ChefSpec::SoloRunner.new(platform: platform, version: version)
         end
 
-        it "should enable #{service_name} service" do
+        it "enables #{service_name} service" do
           expect(chef_run).to enable_service(service_name)
         end
 
-        it "should set #{service_name} service supports" do
+        it "sets #{service_name} service supports" do
           status = %w(centos redhat fedora amazon scientific).include?(platform)
           expect(chef_run).to enable_service(service_name).with_supports(
             Mash.new(restart: true, reload: false, status: status)
           )
         end
 
-        it "should start #{service_name} service" do
+        it "starts #{service_name} service" do
           expect(chef_run).to start_service(service_name)
         end
       end # context on #{platform}
@@ -174,7 +174,7 @@ describe 'mumble_server::default' do
       ChefSpec::SoloRunner.new(platform: 'fedora', version: '20')
     end
 
-    it 'should upgrade old OpenSSL versions' do
+    it 'upgrades old OpenSSL versions' do
       stub_command(
         "file /usr/lib*/libcrypto.so.[0-9]* | awk '$2 == \"ELF\" {print $1}' "\
         "| cut -d: -f1 | xargs readelf -s | grep -Fwq 'OPENSSL_'"
@@ -182,7 +182,7 @@ describe 'mumble_server::default' do
       expect(chef_run).to upgrade_package('openssl')
     end
 
-    it 'should not upgrade new OpenSSL versions' do
+    it 'does not upgrade new OpenSSL versions' do
       stub_command(
         "file /usr/lib*/libcrypto.so.[0-9]* | awk '$2 == \"ELF\" {print $1}' "\
         "| cut -d: -f1 | xargs readelf -s | grep -Fwq 'OPENSSL_'"
@@ -196,37 +196,37 @@ describe 'mumble_server::default' do
       node_set['mumble_server']['service_type'] = 'runit_service'
     end
 
-    it 'should not enable system service' do
+    it 'does not enable system service' do
       expect(chef_run).to_not enable_service('mumble-server')
     end
 
-    it 'should not start system service' do
+    it 'does not start system service' do
       expect(chef_run).to_not start_service('mumble-server')
     end
 
     # expected "service[mumble-server]" actions [] to include :stop ???
-    xit 'should stop system service' do
+    xit 'stops system service' do
       expect(chef_run).to stop_service('mumble-server')
     end
 
     # expected "service[mumble-server]" actions [] to include :disable ???
-    xit 'should disable system service' do
+    xit 'disables system service' do
       expect(chef_run).to disable_service('mumble-server')
     end
 
-    it 'should install lsof, required for runit check' do
+    it 'installs lsof, required for runit check' do
       expect(chef_run).to install_package('lsof')
     end
 
-    it 'should enable runit service' do
+    it 'enables runit service' do
       expect(chef_run).to enable_runit_service('mumble-server')
     end
 
-    it 'should start runit service' do
+    it 'starts runit service' do
       expect(chef_run).to start_runit_service('mumble-server')
     end
 
-    it 'should configure runit service correctly' do
+    it 'configures runit service correctly' do
       expect(chef_run).to enable_runit_service('mumble-server')
         .with_cookbook('mumble_server')
         .with_check(true)
@@ -237,13 +237,13 @@ describe 'mumble_server::default' do
         .with_sv_timeout(60)
     end
 
-    it 'configuration file should notify mumble restart' do
+    it 'configuration file notifies mumble restart' do
       resource = chef_run.template('/etc/murmur/murmur.ini')
       expect(resource).to notify('runit_service[mumble-server]').to(:restart)
         .delayed
     end
 
-    it 'pidfile link should notify mumble restart' do
+    it 'pidfile link notifies mumble restart' do
       resource = chef_run.link('/run/mumble-server/mumble-server.pid')
       expect(resource).to notify('runit_service[mumble-server]').to(:restart)
         .delayed
