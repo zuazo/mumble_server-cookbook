@@ -97,7 +97,7 @@ Don't forget to include the `mumble_server` cookbook as a dependency in the meta
 
 ```ruby
 # metadata.rb
-[...]
+# [...]
 
 depends 'mumble_server'
 ```
@@ -109,9 +109,9 @@ Another alternative is to include the default recipe in your *Run List*.
 ```json
 {
   "name": "mumble.example.com",
-  [...]
+  "[...]": "[...]",
   "run_list": [
-    [...]
+    "[...]",
     "recipe[mumble_server]"
   ]
 }
