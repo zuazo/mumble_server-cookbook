@@ -5,7 +5,7 @@ def whyrun_supported?
 end
 
 def password
-  new_resource.password.gsub("'", '')
+  new_resource.password.delete("'")
 end
 
 action :change do

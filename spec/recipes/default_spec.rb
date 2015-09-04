@@ -157,10 +157,9 @@ describe 'mumble_server::default' do
 
         it "should set #{service_name} service supports" do
           status = %w(centos redhat fedora amazon scientific).include?(platform)
-          expect(chef_run).to enable_service(service_name)
-            .with_supports(Mash.new(
-              restart: true, reload: false, status: status
-            ))
+          expect(chef_run).to enable_service(service_name).with_supports(
+            Mash.new(restart: true, reload: false, status: status)
+          )
         end
 
         it "should start #{service_name} service" do
@@ -191,7 +190,6 @@ describe 'mumble_server::default' do
       ).and_return(true)
       expect(chef_run).to_not upgrade_package('openssl')
     end
-
   end # context on Fedora
 
   context 'with runit' do
@@ -251,7 +249,5 @@ describe 'mumble_server::default' do
       expect(resource).to notify('runit_service[mumble-server]').to(:restart)
         .delayed
     end
-
   end # context with runit
-
 end

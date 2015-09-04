@@ -21,7 +21,6 @@ require 'spec_helper'
 require 'conf'
 
 describe MumbleServer::Conf do
-
   context '#key' do
     [false, nil, 5, 'String'].each do |k|
       it "should return string value for #{k.inspect}" do
@@ -58,7 +57,6 @@ describe MumbleServer::Conf do
   end
 
   context '#sort' do
-
     it 'should run successfully without "Ice" section' do
       values = {
         'Fire' => 'value1',
@@ -78,5 +76,4 @@ describe MumbleServer::Conf do
         .to eq('Ice')
     end
   end
-
 end

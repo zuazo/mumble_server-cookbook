@@ -39,7 +39,7 @@ Vagrant.configure('2') do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing 'localhost:64738' will access port 64738 on the guest machine.
   config.vm.network :forwarded_port, guest: 64_738, host: 64_738,
-                    auto_correct: true
+                                     auto_correct: true
 
   # The time in seconds that Vagrant will wait for the machine to boot and be
   # accessible.

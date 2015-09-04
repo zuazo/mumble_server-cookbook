@@ -50,5 +50,4 @@ describe 'mumble_server_supw resource' do
     expect(chef_run).to run_execute("#{murmurd_cmd} -supw '****'")
       .with_command("#{murmurd_cmd} -supw 'p4ssw0rd'")
   end
-
 end # describe mumble_server_supw resource
