@@ -1,12 +1,12 @@
-Description
-===========
+Mumble Cookbook
+===============
 [![Cookbook Version](https://img.shields.io/cookbook/v/mumble_server.svg?style=flat)](https://supermarket.chef.io/cookbooks/mumble_server)
 [![Dependency Status](http://img.shields.io/gemnasium/zuazo/mumble_server-cookbook.svg?style=flat)](https://gemnasium.com/zuazo/mumble_server-cookbook)
 [![Code Climate](http://img.shields.io/codeclimate/github/zuazo/mumble_server-cookbook.svg?style=flat)](https://codeclimate.com/github/zuazo/mumble_server-cookbook)
 [![Build Status](http://img.shields.io/travis/zuazo/mumble_server-cookbook.svg?style=flat)](https://travis-ci.org/zuazo/mumble_server-cookbook)
 [![Coverage Status](http://img.shields.io/coveralls/zuazo/mumble_server-cookbook.svg?style=flat)](https://coveralls.io/r/zuazo/mumble_server-cookbook?branch=master)
 
-Installs and configures a [Mumble](http://wiki.mumble.info/wiki/Main_Page) server (called Murmur).
+[Chef](https://www.chef.io/) cookbook to install and configure a [Mumble](http://wiki.mumble.info/wiki/Main_Page) server (called Murmur).
 
 Requirements
 ============
