@@ -1,7 +1,7 @@
 # encoding: UTF-8
 #
 # Author:: Xabier de Zuazo (<xabier@zuazo.org>)
-# Copyright:: Copyright (c) 2014 Onddo Labs, SL.
+# Copyright:: Copyright (c) 2015 Xabier de Zuazo
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,7 +35,11 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   # --seed 1234
-  config.order = 'random'
+  # config.order = 'random'
+  # Library tests first (they are capitalized) to not interfere with coverage
+  config.register_ordering(:global) do |list|
+    list.sort_by(&:description)
+  end
 
   # ChefSpec configuration
   config.log_level = :fatal
