@@ -205,14 +205,14 @@ describe 'mumble_server::default' do
     end
 
     # expected "service[mumble-server]" actions [] to include :stop ???
-    xit 'stops system service' do
-      expect(chef_run).to stop_service('mumble-server')
-    end
+    # xit 'stops system service' do
+    #   expect(chef_run).to stop_service('mumble-server')
+    # end
 
     # expected "service[mumble-server]" actions [] to include :disable ???
-    xit 'disables system service' do
-      expect(chef_run).to disable_service('mumble-server')
-    end
+    # xit 'disables system service' do
+    #   expect(chef_run).to disable_service('mumble-server')
+    # end
 
     it 'installs lsof, required for runit check' do
       expect(chef_run).to install_package('lsof')
