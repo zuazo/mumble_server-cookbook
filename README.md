@@ -1,6 +1,6 @@
 Description
 ===========
-[![Cookbook Version](https://img.shields.io/cookbook/v/mumble_server.svg?style=flat)](https://supermarket.getchef.com/cookbooks/mumble_server)
+[![Cookbook Version](https://img.shields.io/cookbook/v/mumble_server.svg?style=flat)](https://supermarket.chef.io/cookbooks/mumble_server)
 [![Dependency Status](http://img.shields.io/gemnasium/onddo/mumble_server-cookbook.svg?style=flat)](https://gemnasium.com/onddo/mumble_server-cookbook)
 [![Code Climate](http://img.shields.io/codeclimate/github/onddo/mumble_server-cookbook.svg?style=flat)](https://codeclimate.com/github/onddo/mumble_server-cookbook)
 [![Build Status](http://img.shields.io/travis/onddo/mumble_server-cookbook.svg?style=flat)](https://travis-ci.org/onddo/mumble_server-cookbook)
@@ -23,7 +23,7 @@ Please, [let us know](https://github.com/onddo/mumble_server-cookbook/issues/new
 
 ## Required Cookbooks
 
-* [runit](https://supermarket.getchef.com/cookbooks/runit)
+* [runit](https://supermarket.chef.io/cookbooks/runit)
 
 ## Required Applications
 
