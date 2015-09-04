@@ -2,8 +2,10 @@
 #
 # Cookbook Name:: mumble_server
 # Recipe:: default
-#
-# Copyright 2014, Onddo Labs, SL.
+# Author:: Xabier de Zuazo (<xabier@zuazo.org>)
+# Copyright:: Copyright (c) 2015 Xabier de Zuazo
+# Copyright:: Copyright (c) 2014 Onddo Labs, SL.
+# License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

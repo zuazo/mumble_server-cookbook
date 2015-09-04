@@ -339,7 +339,7 @@ License and Author
 |:---------------------|:-----------------------------------------|
 | **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@zuazo.org>)
 | **Copyright:**       | Copyright (c) 2015, Xabier de Zuazo
-| **Copyright:**       | Copyright (c) 2014 Onddo Labs, SL.
+| **Copyright:**       | Copyright (c) 2014, Onddo Labs, SL.
 | **License:**         | Apache License, Version 2.0
 
     Licensed under the Apache License, Version 2.0 (the "License");
