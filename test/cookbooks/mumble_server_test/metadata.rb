@@ -1,8 +1,8 @@
 # encoding: UTF-8
 
 name 'mumble_server_test'
-maintainer 'Onddo Labs, SL.'
-maintainer_email 'team@onddo.com'
+maintainer 'Xabier de Zuazo'
+maintainer_email 'xabier@zuazo.org'
 license 'Apache 2.0'
 description 'This cookbook is used with test-kitchen to test the parent, '\
             'mumble_server cookbook'

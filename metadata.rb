@@ -1,8 +1,8 @@
 # encoding: UTF-8
 
 name 'mumble_server'
-maintainer 'Onddo Labs, SL.'
-maintainer_email 'team@onddo.com'
+maintainer 'Xabier de Zuazo'
+maintainer_email 'xabier@zuazo.org'
 license 'Apache 2.0'
 description 'Installs and configures a Mumble server (called Murmur).'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))

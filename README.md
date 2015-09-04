@@ -1,10 +1,10 @@
 Description
 ===========
 [![Cookbook Version](https://img.shields.io/cookbook/v/mumble_server.svg?style=flat)](https://supermarket.chef.io/cookbooks/mumble_server)
-[![Dependency Status](http://img.shields.io/gemnasium/onddo/mumble_server-cookbook.svg?style=flat)](https://gemnasium.com/onddo/mumble_server-cookbook)
-[![Code Climate](http://img.shields.io/codeclimate/github/onddo/mumble_server-cookbook.svg?style=flat)](https://codeclimate.com/github/onddo/mumble_server-cookbook)
-[![Build Status](http://img.shields.io/travis/onddo/mumble_server-cookbook.svg?style=flat)](https://travis-ci.org/onddo/mumble_server-cookbook)
-[![Coverage Status](http://img.shields.io/coveralls/onddo/mumble_server-cookbook.svg?style=flat)](https://coveralls.io/r/onddo/mumble_server-cookbook?branch=master)
+[![Dependency Status](http://img.shields.io/gemnasium/zuazo/mumble_server-cookbook.svg?style=flat)](https://gemnasium.com/zuazo/mumble_server-cookbook)
+[![Code Climate](http://img.shields.io/codeclimate/github/zuazo/mumble_server-cookbook.svg?style=flat)](https://codeclimate.com/github/zuazo/mumble_server-cookbook)
+[![Build Status](http://img.shields.io/travis/zuazo/mumble_server-cookbook.svg?style=flat)](https://travis-ci.org/zuazo/mumble_server-cookbook)
+[![Coverage Status](http://img.shields.io/coveralls/zuazo/mumble_server-cookbook.svg?style=flat)](https://coveralls.io/r/zuazo/mumble_server-cookbook?branch=master)
 
 Installs and configures a [Mumble](http://wiki.mumble.info/wiki/Main_Page) server (called Murmur).
 
@@ -19,7 +19,7 @@ This cookbook has been tested on the following platforms:
 * Fedora
 * Ubuntu
 
-Please, [let us know](https://github.com/onddo/mumble_server-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
+Please, [let us know](https://github.com/zuazo/mumble_server-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
 
 ## Required Cookbooks
 
@@ -182,7 +182,7 @@ Another alternative is to include the default recipe in your *Run List*.
 
 ```json
 {
-  "name": "mumble.onddo.com",
+  "name": "mumble.example.com",
   [...]
   "run_list": [
     [...]
@@ -392,19 +392,19 @@ include_recipe 'mumble_server'
 Testing
 =======
 
-See [TESTING.md](https://github.com/onddo/mumble_server-cookbook/blob/master/TESTING.md).
+See [TESTING.md](https://github.com/zuazo/mumble_server-cookbook/blob/master/TESTING.md).
 
 Contributing
 ============
 
-Please do not hesitate to [open an issue](https://github.com/onddo/mumble_server-cookbook/issues/new) with any questions or problems.
+Please do not hesitate to [open an issue](https://github.com/zuazo/mumble_server-cookbook/issues/new) with any questions or problems.
 
-See [CONTRIBUTING.md](https://github.com/onddo/mumble_server-cookbook/blob/master/CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/zuazo/mumble_server-cookbook/blob/master/CONTRIBUTING.md).
 
 TODO
 ====
 
-See [TODO.md](https://github.com/onddo/mumble_server-cookbook/blob/master/TODO.md).
+See [TODO.md](https://github.com/zuazo/mumble_server-cookbook/blob/master/TODO.md).
 
 
 License and Author
@@ -412,8 +412,9 @@ License and Author
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
-| **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@onddo.com>)
-| **Copyright:**       | Copyright (c) 2014 Onddo Labs, SL. (www.onddo.com)
+| **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@zuazo.org>)
+| **Copyright:**       | Copyright (c) 2015, Xabier de Zuazo
+| **Copyright:**       | Copyright (c) 2014 Onddo Labs, SL.
 | **License:**         | Apache License, Version 2.0
 
     Licensed under the Apache License, Version 2.0 (the "License");
