@@ -22,6 +22,9 @@ end
 metadata
 cookbook 'apt'
 
+# Until #142 fixed: https://github.com/hw-cookbooks/runit/issues/142
+cookbook 'runit', '1.6.0'
+
 # Minitest Chef Handler
 # More info at https://github.com/calavera/minitest-chef-handler
 if ::File.directory?(::File.join('files', 'default', 'tests', 'minitest')) ||
