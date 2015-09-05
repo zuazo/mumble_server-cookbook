@@ -23,3 +23,18 @@ require 'spec_helper'
 describe process('runsvdir') do
   it { should be_running }
 end
+
+describe process('runsv mumble-server') do
+  it { should be_running }
+end
+
+log_file =
+  if ::File.exist?('/etc/service/mumble-server/log/main/current')
+    '/etc/service/mumble-server/log/main/current'
+  else
+    '/etc/service/murmur-server/log/main/current'
+  end
+
+describe file(log_file) do
+  its(:content) { should match /Murmur .* running on/ }
+end
