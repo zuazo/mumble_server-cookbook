@@ -4,8 +4,8 @@ Mumble Cookbook
 [![GitHub Source](https://img.shields.io/badge/source-GitHub-blue.svg?style=flat)](https://github.com/zuazo/mumble_server-cookbook)
 [![Dependency Status](http://img.shields.io/gemnasium/zuazo/mumble_server-cookbook.svg?style=flat)](https://gemnasium.com/zuazo/mumble_server-cookbook)
 [![Code Climate](http://img.shields.io/codeclimate/github/zuazo/mumble_server-cookbook.svg?style=flat)](https://codeclimate.com/github/zuazo/mumble_server-cookbook)
-[![Build Status](http://img.shields.io/travis/zuazo/mumble_server-cookbook/0.2.0.svg?style=flat)](https://travis-ci.org/zuazo/mumble_server-cookbook)
-[![Coverage Status](http://img.shields.io/coveralls/zuazo/mumble_server-cookbook/0.2.0.svg?style=flat)](https://coveralls.io/r/zuazo/mumble_server-cookbook?branch=0.2.0)
+[![Build Status](http://img.shields.io/travis/zuazo/mumble_server-cookbook.svg?style=flat)](https://travis-ci.org/zuazo/mumble_server-cookbook)
+[![Coverage Status](http://img.shields.io/coveralls/zuazo/mumble_server-cookbook.svg?style=flat)](https://coveralls.io/r/zuazo/mumble_server-cookbook?branch=master)
 
 [Chef](https://www.chef.io/) cookbook to install and configure a [Mumble](http://wiki.mumble.info/wiki/Main_Page) server (called Murmur).
 
