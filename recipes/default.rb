@@ -57,6 +57,15 @@ template node['mumble_server']['config_file'] do
   notifies :restart, service_name
 end
 
+pid_file_dir = ::File.dirname(node['mumble_server']['pid_file'])
+directory pid_file_dir do
+  owner 'root'
+  group node['mumble_server']['group']
+  mode '00755'
+  not_if { ::File.exist?(pid_file_dir) }
+  action :create
+end
+
 file node['mumble_server']['pid_file'] do
   owner 'root'
   group node['mumble_server']['group']
@@ -119,6 +128,10 @@ when 'runit_service'
   end
 else
   service node['mumble_server']['service_name'] do
+    if node['platform'] == 'ubuntu' &&
+       Gem::Version.new(node['platform_version']) >= Gem::Version.new('15.04')
+      provider Chef::Provider::Service::Debian
+    end
     supports node['mumble_server']['service_supports']
     action [:enable, :start]
   end
