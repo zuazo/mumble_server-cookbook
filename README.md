@@ -320,6 +320,25 @@ Testing
 
 See [TESTING.md](https://github.com/zuazo/mumble_server-cookbook/blob/master/TESTING.md).
 
+## ChefSpec Matchers
+
+### mumble_server_supw(password)
+
+Helper method for locating a `mumble_server_supw` resource in the collection.
+
+```ruby
+resource = chef_run.mumble_server_supw(password)
+expect(resource).to notify('service[apache2]').to(:reload)
+```
+
+### change_mumble_server_supw(password)
+
+Assert that the *Chef Run* changes the Mumble Server SuperUser password.
+
+```ruby
+expect(chef_run).to change_mumble_server_supw(password)
+```
+
 Contributing
 ============
 
