@@ -134,12 +134,12 @@ default['mumble_server']['config']['users'] = 100
 # Regular expression used to validate channel names.
 # (Note that you don't have to escape backslashes with \ )
 # default['mumble_server']['config']['channelname'] =
-#  '[ \-=\w\#\[\]\{\}\(\)\@\|]+'
+#   '[ \-=\w\#\[\]\{\}\(\)\@\|]+'
 
 # Regular expression used to validate user names.
 # (Note that you don't have to escape backslashes with \ )
 # default['mumble_server']['config']['username'] =
-#  '[-=\w\[\]\{\}\(\)\@\|\.]+'
+#   '[-=\w\[\]\{\}\(\)\@\|\.]+'
 
 # Maximum length of text messages in characters. 0 for no limit.
 # default['mumble_server']['config']['textmessagelength'] = 5_000
@@ -169,7 +169,7 @@ default['mumble_server']['config']['users'] = 100
 # default['mumble_server']['config']['registerName'] = 'Mumble Server'
 # default['mumble_server']['config']['registerPassword'] = 'secret'
 # default['mumble_server']['config']['registerUrl'] =
-#  'http://mumble.sourceforge.net/'
+#   'http://mumble.sourceforge.net/'
 # default['mumble_server']['config']['registerHostname'] = nil
 
 # If this option is enabled, the server will announce its presence via the
