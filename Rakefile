@@ -10,9 +10,9 @@
 # rake default                  # Run doc, style, unit and integration tests
 # rake doc                      # Generate Ruby documentation
 # rake integration              # Run Test Kitchen integration tests
-# rake integration:cloud        # Run Test integration tests in the cloud
-# rake integration:docker       # Run Test integration tests using docker
-# rake integration:vagrant      # Run Test integration tests using vagrant
+# rake integration:cloud        # Run Test Kitchen tests in the cloud
+# rake integration:docker       # Run Test Kitchen tests using docker
+# rake integration:vagrant      # Run Test Kitchen tests using vagrant
 # rake style                    # Run all style checks
 # rake style:chef               # Run Chef style checks using foodcritic
 # rake style:ruby               # Run Ruby style checks using rubocop
@@ -81,26 +81,35 @@ task :unit do
 end
 
 namespace :integration do
-  def run_kitchen
-    sh "kitchen test #{ENV['KITCHEN_ARGS']} #{ENV['KITCHEN_REGEXP']}"
+  def kitchen_config(loader_config = {})
+    {}.tap do |config|
+      unless loader_config.empty?
+        @loader = Kitchen::Loader::YAML.new(loader_config)
+        config[:loader] = @loader
+      end
+    end
+  end
+
+  def run_kitchen(loader_config = {})
+    require 'kitchen'
+    Kitchen.logger = Kitchen.default_file_logger
+    config = kitchen_config(loader_config)
+    Kitchen::Config.new(config).instances.each { |i| i.test(:always) }
   end
 
   desc 'Run Test Kitchen integration tests using vagrant'
   task :vagrant do
-    ENV.delete('KITCHEN_LOCAL_YAML')
     run_kitchen
   end
 
   desc 'Run Test Kitchen integration tests using docker'
   task :docker do
-    ENV['KITCHEN_LOCAL_YAML'] = '.kitchen.docker.yml'
-    run_kitchen
+    run_kitchen(local_config: '.kitchen.docker.yml')
   end
 
   desc 'Run Test Kitchen integration tests in the cloud'
   task :cloud do
-    ENV['KITCHEN_LOCAL_YAML'] = '.kitchen.cloud.yml'
-    run_kitchen
+    run_kitchen(local_config: '.kitchen.cloud.yml')
   end
 end
 
