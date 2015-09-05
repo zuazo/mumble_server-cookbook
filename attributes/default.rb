@@ -21,8 +21,8 @@
 #
 
 default['mumble_server']['packages'] = %w(mumble-server)
-case node['platform']
-when 'centos', 'redhat', 'fedora', 'amazon', 'scientific'
+case node['platform_family']
+when 'rhel', 'fedora'
   default['mumble_server']['service_name'] = 'murmur'
   default['mumble_server']['service_supports'] =
     Mash.new(restart: true, reload: false, status: true)
