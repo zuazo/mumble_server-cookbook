@@ -26,7 +26,7 @@ service_name =
 
 # Bugfix: relocation error: proftpd: symbol SSLeay_version, version
 # OPENSSL_1.0.1 not defined in file libcrypto.so.10 with link time reference
-if platform?('fedora')
+if platform_family?('fedora')
   package 'openssl' do
     action :upgrade
     not_if 'file /usr/lib*/libcrypto.so.[0-9]* '\

@@ -27,4 +27,5 @@ include_recipe 'mumble_server'
 
 mumble_server_supw 'p4ssw0rd'
 
-package 'lsof' # required for integration tests
+# Required for integration tests:
+include_recipe 'netstat'

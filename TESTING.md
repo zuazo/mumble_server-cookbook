@@ -3,11 +3,12 @@ Testing
 
 ## Required Gems
 
+* `yard`
 * `vagrant`
 * `foodcritic`
 * `rubocop`
 * `berkshelf`
-* `simplecov`
+* `should_not`
 * `chefspec`
 * `test-kitchen`
 * `kitchen-vagrant`
@@ -31,6 +32,10 @@ You can install gem dependencies with bundler:
     $ gem install bundler
     $ bundle install --without travis
 
+## Generating the Documentation
+
+    $ bundle exec rake doc
+
 ## Running the Syntax Style Tests
 
     $ bundle exec rake style
@@ -41,7 +46,7 @@ You can install gem dependencies with bundler:
 
 ## Running the Integration Tests
 
-    $ bundle exec rake integration
+    $ bundle exec rake integration:vagrant
 
 Or:
 
@@ -49,11 +54,20 @@ Or:
     $ bundle exec kitchen test
     [...]
 
+### Running Integration Tests in Docker
+
+You need to have [Docker installed](https://docs.docker.com/installation/).
+
+    $ wget -qO- https://get.docker.com/ | sh
+
+Then use the `integration:docker` rake task to run the tests:
+
+    $ bundle exec rake integration:docker
+
 ### Running Integration Tests in the Cloud
 
 #### Requirements
 
-* `kitchen-vagrant`
 * `kitchen-digitalocean`
 * `kitchen-ec2`
 
@@ -67,11 +81,9 @@ You can run the tests in the cloud instead of using vagrant. First, you must set
 * `DIGITALOCEAN_SSH_KEY_IDS`: DigitalOcean SSH numeric key IDs.
 * `DIGITALOCEAN_SSH_KEY_PATH`: DigitalOcean SSH private key local full path. Only when you are not using an SSH Agent.
 
-Then, you must configure test-kitchen to use `.kitchen.cloud.yml` configuration file:
+Then use the `integration:cloud` rake task to run the tests:
 
-    $ export KITCHEN_LOCAL_YAML=".kitchen.cloud.yml"
-    $ bundle exec kitchen list
-    [...]
+    $ bundle exec rake integration:cloud
 
 ## Using Vagrant with the Vagrantfile
 
