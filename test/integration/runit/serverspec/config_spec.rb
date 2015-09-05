@@ -21,6 +21,8 @@
 require 'spec_helper'
 
 describe file('/etc/murmur/murmur.ini') do
-  its(:content) { should match /^welcometext=.*Welcome to this server/ }
-  its(:content) { should include '[-=\\\\w\\\\[\\\\]\\\\{\\\\}\\\\(\\\\)\\\\@\\\\|\\\\.]+' }
+  its(:content) { should match(/^welcometext=.*Welcome to this server/) }
+  its(:content) do
+    should include '[-=\\\\w\\\\[\\\\]\\\\{\\\\}\\\\(\\\\)\\\\@\\\\|\\\\.]+'
+  end
 end

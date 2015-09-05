@@ -36,5 +36,5 @@ log_file =
   end
 
 describe file(log_file) do
-  its(:content) { should match /Murmur .* running on/ }
+  its(:content) { should match(/Murmur .* running on/) }
 end
